@@ -1,0 +1,54 @@
+.container {
+  height: auto;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  padding: 3em;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.input {
+  display: block;
+  padding: 15px;
+  width: 300px;
+  border-radius: 5px;
+  margin: 1em 0;
+  border: 2px solid gray;
+}
+
+.btn {
+  display: block;
+  padding: 15px;
+  width: 100%;
+  margin: auto auto 4px auto;
+
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+}
+
+.btn:active {
+  background-color: #008cba;
+  color: #fff;
+}
+
+p {
+  font-size: 12px;
+  color: red;
+  width: 300px;
+}
+
+.link {
+  text-align: center;
+  margin: 10px 0 0 0;
+}
+
+.form-title {
+  text-align: center;
+}
