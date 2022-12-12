@@ -52,24 +52,24 @@ const Home = (props) => {
     fetchData();
   }, []);
   useEffect(() => {
-    if (query.length >= 1) {
-      const fetchUsers = async () => {
-        const res = await fetch(
-          `http://localhost:5000/getUsers?username=${query}`,
-          {
-            method: "get",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        const d = await res.json();
-        if (d.status !== "success") {
-          toast.info("No matches found!");
-        } else {
-          setUsers((prev) => [...prev, ...d.data.users]);
+    const fetchUsers = async () => {
+      const res = await fetch(
+        `http://localhost:5000/getUsers?username=${query}`,
+        {
+          method: "get",
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      };
+      );
+      const d = await res.json();
+      if (d.status !== "success") {
+        toast.info("No matches found!");
+      } else {
+        setUsers(d.data.users);
+      }
+    };
+    if (query !== "") {
       fetchUsers();
     }
   }, [query]);
@@ -122,21 +122,27 @@ const Home = (props) => {
               x
             </span>
           </div>
-          <div className="auto-correct-container">
-            {users.map((user, i) => {
-              return (
-                <div id="profile" key={i}>
-                  <div className="pic">
-                    <div className="profile-pic"></div>
-                  </div>
-                  <div className="name">
-                    <h5 className="username">{user.username}</h5>
-                    <span className="email">{user.email}</span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+          {query !== "" ? (
+            <div className="auto-correct-parent-container">
+              <div className="auto-correct-container">
+                {users.map((user, i) => {
+                  return (
+                    <div id="profile" key={i}>
+                      <div className="pic">
+                        <div className="profile-pic"></div>
+                      </div>
+                      <div className="name">
+                        <h5 className="username">{user.username}</h5>
+                        <span className="email">{user.email}</span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     );
