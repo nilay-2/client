@@ -106,6 +106,10 @@ const Home = (props) => {
             </div>
           </div>
         </div>
+        <img
+          src="http://localhost:5000/img/users/istockphoto-1309328823-170667a.jpg"
+          alt="user-photo"
+        />
         <h3>{JSON.stringify(clientData)}</h3>
         <div className="formAndSuggestion">
           <div className="searchContainer">
