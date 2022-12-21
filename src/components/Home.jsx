@@ -93,7 +93,7 @@ const Home = (props) => {
       position: "top-center",
     });
     setTimeout(() => {
-      window.location.reload(true);
+      window.location.assign("/");
     }, 1500);
     return;
   };
