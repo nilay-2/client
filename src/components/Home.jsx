@@ -83,6 +83,18 @@ const Home = (props) => {
         "Content-Type": "application/json",
       },
     });
+    const d = await res.json();
+    if (d.status !== "success") {
+      toast.error(`${d.message}`, {
+        position: "top-center",
+      });
+    }
+    toast.success("Logged out successfully!", {
+      position: "top-center",
+    });
+    setTimeout(() => {
+      window.location.reload(true);
+    }, 1500);
     return;
   };
   if (status) {
@@ -100,9 +112,10 @@ const Home = (props) => {
               </Link>
             </div>
             <div className="nav-link">
-              <Link to={"/login"}>
+              {/*<Link to={"/login"}>
                 <button onClick={logout}>Log out</button>
-              </Link>
+    </Link>*/}
+              <button onClick={logout}>Log out</button>
             </div>
           </div>
         </div>
