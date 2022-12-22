@@ -22,7 +22,7 @@ const Login = (props) => {
       return;
     }
     const res = await fetch(`${BACKEND_URL}/users/login`, {
-      method: "post",
+      method: "POST",
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
