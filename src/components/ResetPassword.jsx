@@ -2,8 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const BACKEND_URL = "https://server-rho-seven.vercel.app";
-
+const BACKEND_URL = "https://mernauthentication.vercel.app/users";
 const ResetPassword = (props) => {
   const [data, setData] = useState({ password: "", confirmPassword: "" });
   const { token } = useParams();

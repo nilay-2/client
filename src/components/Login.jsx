@@ -2,8 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const BACKEND_URL = "https://server-rho-seven.vercel.app";
-
+const BACKEND_URL = "https://mernauthentication.vercel.app/users";
 const Login = (props) => {
   const [data, setData] = useState({
     email: "",
