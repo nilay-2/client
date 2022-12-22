@@ -3,7 +3,7 @@ import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const BACKEND_URL = "https://mernauthentication.vercel.app/users";
+const BACKEND_URL = "https://mernauthentication.vercel.app";
 const regex = {
   username: /^[a-zA-Z0-9_-]{3,}$/,
   email: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
