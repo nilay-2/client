@@ -3,6 +3,7 @@ import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import BACKEND_URL from "../../config";
 const regex = {
   username: /^[a-zA-Z0-9_-]{3,}$/,
   email: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
@@ -74,29 +75,30 @@ const SignUp = (props) => {
       Object.values(data).every((val) => val !== "") &&
       Object.values(err).every((val) => val === "")
     ) {
-      const myPromise = new Promise(function(resolve, reject) {
-        fetch("http://localhost:5000/users/signUp", {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      }).then(res => res.json()).then(d => {
-        if(d.status !== "success") {
-          reject(d.message)
-        }
-        else {
-          resolve(d.message)
-          navigate('/verifyOTP')
-        }
+      const myPromise = new Promise(function (resolve, reject) {
+        fetch(`${BACKEND_URL}/users/signUp`, {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((res) => res.json())
+          .then((d) => {
+            if (d.status !== "success") {
+              reject(d.message);
+            } else {
+              resolve(d.message);
+              navigate("/verifyOTP");
+            }
+          });
       });
-      })
-      clearInput()
+      clearInput();
       toast.promise(myPromise, {
         pending: "Email is sent.",
         success: "Please check your mail.",
-        error: "Error occured while sending email, please try again later."
-   })
+        error: "Error occured while sending email, please try again later.",
+      });
       // const res = await fetch("http://localhost:5000/users/signUp", {
       //   method: "post",
       //   headers: {
@@ -175,7 +177,8 @@ const SignUp = (props) => {
         <div className="form-container">
           <h3 className="form-title">SIGN UP</h3>
           <form>
-            <input className="input"
+            <input
+              className="input"
               type="text"
               name="username"
               placeholder="Username"
@@ -191,7 +194,8 @@ const SignUp = (props) => {
             <div className="mssg">
               {err.username ? <p>{err.username}</p> : ""}
             </div>
-            <input className="input"
+            <input
+              className="input"
               type="text"
               name="email"
               placeholder="Email"
@@ -205,7 +209,8 @@ const SignUp = (props) => {
               }}
             />
             <div className="mssg">{err.email ? <p>{err.email}</p> : ""}</div>
-            <input className="input"
+            <input
+              className="input"
               type="password"
               name="password"
               placeholder="Password"
@@ -221,7 +226,8 @@ const SignUp = (props) => {
             <div className="mssg">
               {err.password ? <p>{err.password}</p> : ""}
             </div>
-            <input className="input"
+            <input
+              className="input"
               type="password"
               name="confirmPassword"
               placeholder="Confirm password"

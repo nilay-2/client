@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import BACKEND_URL from "../../config";
 const ForgotPassword = (props) => {
   const [data, setData] = useState({ email: "" });
   const getData = (e) => {
@@ -16,29 +17,28 @@ const ForgotPassword = (props) => {
       toast.error("Please enter email");
       return;
     }
-    const myPromise = new Promise(async function(resolve, reject) {
-      const res = await fetch("http://localhost:5000/users/forgotPassword", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
+    const myPromise = new Promise(async function (resolve, reject) {
+      const res = await fetch(`${BACKEND_URL}/users/forgotPassword`, {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const d = await res.json();
+      if (d.status !== "success") {
+        reject(d.message);
+      } else {
+        resolve(d.message);
+      }
     });
-    const d = await res.json();
-    if(d.status !== 'success') {
-      reject(d.message)
-    }
-    else {
-      resolve(d.message)
-    }
-    })
-    clearInput()
-    toast.promise(myPromise,  {
+    clearInput();
+    toast.promise(myPromise, {
       pending: "Email is sent.",
       success: "Please check your mail.",
-      error: "Error occured while sending email, please try again later."
- })
-    // const res = await fetch("http://localhost:5000/users/forgotPassword", {
+      error: "Error occured while sending email, please try again later.",
+    });
+    // const res = await fetch("${BACKEND_URL}/users/forgotPassword", {
     //   method: "post",
     //   headers: {
     //     "Content-Type": "application/json",
@@ -68,7 +68,8 @@ const ForgotPassword = (props) => {
             Sending password reset link might take some time, please be patient.
           </p>
           <form onSubmit={formHandler}>
-            <input className="input"
+            <input
+              className="input"
               type="text"
               name="email"
               placeholder="Email"

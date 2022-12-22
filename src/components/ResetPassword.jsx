@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import BACKEND_URL from "../../config";
 const ResetPassword = (props) => {
   const [data, setData] = useState({ password: "", confirmPassword: "" });
   const { token } = useParams();
@@ -18,16 +19,13 @@ const ResetPassword = (props) => {
       toast.error("All fields are required");
       return;
     }
-    const res = await fetch(
-      `http://localhost:5000/users/resetPassword/${token}`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      }
-    );
+    const res = await fetch(`${BACKEND_URL}/users/resetPassword/${token}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
     const d = await res.json();
     if (d.status !== "success") {
       toast.error(`${d.message}`);
@@ -49,14 +47,16 @@ const ResetPassword = (props) => {
         <div className="form-container">
           <h3 className="form-title">RESET PASSWORD</h3>
           <form>
-            <input className="input"
+            <input
+              className="input"
               type="password"
               name="password"
               placeholder="password"
               onChange={getData}
               value={data.password}
             />
-            <input className="input"
+            <input
+              className="input"
               type="password"
               name="confirmPassword"
               placeholder="confirm password"

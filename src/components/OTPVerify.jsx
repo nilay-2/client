@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import BACKEND_URL from "../../config";
 const OTPVerify = (props) => {
   const [data, setData] = useState({ otp: "" });
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const OTPVerify = (props) => {
       toast.error("Please enter otp");
       return;
     }
-    const res = await fetch("http://localhost:5000/users/verifyOTP", {
+    const res = await fetch(`${BACKEND_URL}/users/verifyOTP`, {
       method: "post",
       credentials: "include",
       headers: {
@@ -46,7 +47,8 @@ const OTPVerify = (props) => {
           <h3 className="form-title">FORGOT PASSWORD</h3>
 
           <form>
-            <input className="input"
+            <input
+              className="input"
               type="text"
               name="otp"
               value={data.otp}

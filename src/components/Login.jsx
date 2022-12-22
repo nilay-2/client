@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import BACKEND_URL from "../../config";
 const Login = (props) => {
   const [data, setData] = useState({
     email: "",
@@ -20,7 +21,7 @@ const Login = (props) => {
       toast.error("All fields are required");
       return;
     }
-    const res = await fetch("http://localhost:5000/users/login", {
+    const res = await fetch(`${BACKEND_URL}/users/login`, {
       method: "post",
       credentials: "include",
       headers: {
@@ -48,14 +49,16 @@ const Login = (props) => {
         <div className="form-container">
           <h3 className="form-title">LOGIN</h3>
           <form>
-            <input className="input"
+            <input
+              className="input"
               type="text"
               name="email"
               value={data.email}
               placeholder="Email"
               onChange={getData}
             />
-            <input className="input"
+            <input
+              className="input"
               type="password"
               name="password"
               value={data.password}

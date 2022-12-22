@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import BACKEND_URL from "../../config";
 // const Home = ({ clData }) => {
 const Home = (props) => {
   const [status, setStatus] = useState(false);
@@ -29,7 +30,7 @@ const Home = (props) => {
   };
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("http://localhost:5000/getClientDetails", {
+      const res = await fetch(`${BACKEND_URL}/getClientDetails`, {
         method: "get",
         credentials: "include",
         headers: {
@@ -53,15 +54,12 @@ const Home = (props) => {
   }, []);
   useEffect(() => {
     const fetchUsers = async () => {
-      const res = await fetch(
-        `http://localhost:5000/getUsers?username=${query}`,
-        {
-          method: "get",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const res = await fetch(`${BACKEND_URL}/getUsers?username=${query}`, {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       const d = await res.json();
       if (d.status !== "success") {
         toast.info("No matches found!");
@@ -76,7 +74,7 @@ const Home = (props) => {
   // const token = localStorage.getItem("token");
   const logout = async () => {
     // if (token) localStorage.removeItem("token");
-    const res = await fetch("http://localhost:5000/users/logout", {
+    const res = await fetch(`${BACKEND_URL}/users/logout`, {
       method: "get",
       credentials: "include",
       headers: {
@@ -120,7 +118,7 @@ const Home = (props) => {
           </div>
         </div>
         <img
-          src="http://localhost:5000/img/users/istockphoto-1309328823-170667a.jpg"
+          src={`${BACKEND_URL}/img/users/istockphoto-1309328823-170667a.jpg`}
           alt="user-photo"
         />
         <h3>{JSON.stringify(clientData)}</h3>
