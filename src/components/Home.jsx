@@ -79,7 +79,7 @@ const Home = (props) => {
   const logout = async () => {
     // if (token) localStorage.removeItem("token");
     const res = await fetch(`${BACKEND_URL}/users/logout`, {
-      method: "get",
+      method: "GET",
       credentials: "include",
       headers: {
         "Access-Control-Allow-Origin": "*",
