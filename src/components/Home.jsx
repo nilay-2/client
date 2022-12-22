@@ -96,7 +96,7 @@ const Home = (props) => {
       position: "top-center",
     });
     setTimeout(() => {
-      window.location.assign("/login");
+      window.location.reload(true);
     }, 1500);
     return;
   };
