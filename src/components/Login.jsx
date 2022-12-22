@@ -21,7 +21,7 @@ const Login = (props) => {
       toast.error("All fields are required");
       return;
     }
-    const res = await fetch(`https://server-rho-seven.vercel.app/users/login`, {
+    const res = await fetch(`${BACKEND_URL}/users/login`, {
       method: "POST",
       credentials: "include",
       headers: {
