@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import BACKEND_URL from "../../config";
+
+const BACKEND_URL = "https://server-rho-seven.vercel.app";
+
 // const Home = ({ clData }) => {
 const Home = (props) => {
   const [status, setStatus] = useState(false);

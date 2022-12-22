@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import BACKEND_URL from "../../config";
+const BACKEND_URL = "https://server-rho-seven.vercel.app";
 const ForgotPassword = (props) => {
   const [data, setData] = useState({ email: "" });
   const getData = (e) => {

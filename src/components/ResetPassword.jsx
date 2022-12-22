@@ -2,7 +2,8 @@ import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import BACKEND_URL from "../../config";
+const BACKEND_URL = "https://server-rho-seven.vercel.app";
+
 const ResetPassword = (props) => {
   const [data, setData] = useState({ password: "", confirmPassword: "" });
   const { token } = useParams();
