@@ -23,6 +23,7 @@ const ResetPassword = (props) => {
     const res = await fetch(`${BACKEND_URL}/users/resetPassword/${token}`, {
       method: "PATCH",
       headers: {
+        "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),

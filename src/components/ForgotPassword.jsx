@@ -21,6 +21,7 @@ const ForgotPassword = (props) => {
       const res = await fetch(`${BACKEND_URL}/users/forgotPassword`, {
         method: "post",
         headers: {
+          "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),

@@ -80,6 +80,7 @@ const SignUp = (props) => {
         fetch(`${BACKEND_URL}/users/signUp`, {
           method: "post",
           headers: {
+            "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
           },
           body: JSON.stringify(data),

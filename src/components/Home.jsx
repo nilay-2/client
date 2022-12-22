@@ -36,6 +36,7 @@ const Home = (props) => {
         method: "get",
         credentials: "include",
         headers: {
+          "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json",
           // token: token,
         },
@@ -59,6 +60,7 @@ const Home = (props) => {
       const res = await fetch(`${BACKEND_URL}/getUsers?username=${query}`, {
         method: "get",
         headers: {
+          "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json",
         },
       });
@@ -80,6 +82,7 @@ const Home = (props) => {
       method: "get",
       credentials: "include",
       headers: {
+        "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
       },
     });
