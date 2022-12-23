@@ -95,9 +95,9 @@ const Home = (props) => {
     toast.success("Logged out successfully!", {
       position: "top-center",
     });
-    // setTimeout(() => {
-    //   window.location.assign("/login");
-    // }, 1500);
+    setTimeout(() => {
+      navigate("/login");
+    }, 1500);
     return;
   };
   if (status) {
