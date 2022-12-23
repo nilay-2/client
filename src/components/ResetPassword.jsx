@@ -21,6 +21,7 @@ const ResetPassword = (props) => {
     }
     const res = await fetch(`${BACKEND_URL}/users/resetPassword/${token}`, {
       method: "PATCH",
+      credentials: "include",
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
