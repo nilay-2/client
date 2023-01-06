@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const BACKEND_URL = "https://mernauthentication.vercel.app";
+import { BACKEND_URL } from "./utils.";
 const OTPVerify = (props) => {
   const [data, setData] = useState({ otp: "" });
   const navigate = useNavigate();
