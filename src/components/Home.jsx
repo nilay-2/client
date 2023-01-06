@@ -114,6 +114,9 @@ const Home = (props) => {
     const res = await fetch(`${BACKEND_URL}/uploadFile`, {
       method: "POST",
       credentials: "include",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
       body: formData,
     });
     const data = await res.json();
