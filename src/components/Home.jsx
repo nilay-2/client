@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BACKEND_URL } from "./utils.";
 import { storage } from "./utils.";
-import { ref, uploadString } from "firebase/storage";
+import { ref, uploadBytes, uploadString } from "firebase/storage";
 import b64toBlob from "b64-to-blob";
 import fileDownload from "js-file-download";
 // const Home = ({ clData }) => {
@@ -125,6 +125,8 @@ const Home = (props) => {
     const data = await res.json();
     console.log(data);
     const blob = b64toBlob(data.data, data.contentType);
+    const imageRef = ref(storage, "images/users/myProfilePic.jpeg");
+    uploadBytes(imageRef, blob);
     fileDownload(blob, "myProfilePic.jpeg");
   };
 
