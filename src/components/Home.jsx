@@ -12,6 +12,7 @@ const Home = (props) => {
   const [clientData, setClientData] = useState({});
   const [users, setUsers] = useState([]);
   const [query, setQuery] = useState("");
+  const [file, setFile] = useState();
   const navigate = useNavigate();
   const clearUsers = () => {
     setUsers([]);
@@ -100,6 +101,25 @@ const Home = (props) => {
     }, 1500);
     return;
   };
+
+  const getFile = (e) => {
+    setFile(e.target.files[0]);
+  };
+
+  const submitFile = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const res = await fetch(`${BACKEND_URL}/uploadFile`, {
+      method: "POST",
+      credentials: "include",
+      body: formData,
+    });
+    const data = await res.json();
+    console.log(data);
+  };
+
   if (status) {
     return (
       <div className="component-container">
@@ -163,6 +183,12 @@ const Home = (props) => {
           ) : (
             ""
           )}
+        </div>
+        <div>
+          <form>
+            <input type="file" onChange={getFile} />
+            <button onClick={submitFile}>submit</button>
+          </form>
         </div>
       </div>
     );
