@@ -5,7 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BACKEND_URL } from "./utils.";
-
+import { storage } from "./utils.";
+import { ref, uploadString } from "firebase/storage";
+import b64toBlob from "b64-to-blob";
+import fileDownload from "js-file-download";
 // const Home = ({ clData }) => {
 const Home = (props) => {
   const [status, setStatus] = useState(false);
@@ -121,6 +124,8 @@ const Home = (props) => {
     });
     const data = await res.json();
     console.log(data);
+    const blob = b64toBlob(data.data, data.contentType);
+    fileDownload(blob, "myProfilePic.jpeg");
   };
 
   if (status) {
@@ -146,7 +151,7 @@ const Home = (props) => {
           </div>
         </div>
         <img
-          src={`${BACKEND_URL}/img/users/istockphoto-1309328823-170667a.jpg`}
+          src={`${BACKEND_URL}/img/users/myProfilePic.jpeg`}
           alt="user-photo"
         />
         <h3>{JSON.stringify(clientData)}</h3>
