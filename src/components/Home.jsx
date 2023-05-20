@@ -125,8 +125,9 @@ const Home = (props) => {
     const data = await res.json();
     console.log(data);
     const blob = b64toBlob(data.data, data.contentType);
-    const imageRef = ref(storage, "images/users/myProfilePic.jpeg");
-    uploadBytes(imageRef, blob);
+    // console.log(blob);
+    // const imageRef = ref(storage, "images/users/myProfilePic.jpeg");
+    // uploadBytes(imageRef, blob);
     fileDownload(blob, "myProfilePic.jpeg");
   };
 
