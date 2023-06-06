@@ -119,6 +119,7 @@ const Home = (props) => {
       credentials: "include",
       headers: {
         "Access-Control-Allow-Origin": "*",
+        "Content-Type": "multipart/form-data"
       },
       body: formData,
     });
